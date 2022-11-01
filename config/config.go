@@ -1,15 +1,15 @@
 package config
 
 import (
+	"io"
+	"os"
+	"path/filepath"
+	"sync"
+
 	. "github.com/wannanbigpig/gin-layout/config/autoload"
 	"github.com/wannanbigpig/gin-layout/pkg/utils"
 	"gopkg.in/ini.v1"
 	"gopkg.in/yaml.v3"
-	"io"
-	"io/ioutil"
-	"os"
-	"path/filepath"
-	"sync"
 )
 
 // Conf 配置项主结构体
@@ -17,6 +17,7 @@ type Conf struct {
 	AppConfig `ini:"app" yaml:"app"`
 	Server    ServerConfig `ini:"server" yaml:"server"`
 	Mysql     MysqlConfig  `ini:"mysql" yaml:"mysql"`
+	Mongo     MongoConfig  `ini:"mongo" yaml:"mongo"`
 	Redis     RedisConfig  `ini:"redis" yaml:"redis"`
 	Logger    LoggerConfig `ini:"logger" yaml:"logger"`
 }
@@ -53,7 +54,7 @@ func loadYaml(configPath string) {
 		yamlConfig = configPath
 	}
 
-	cfg, err := ioutil.ReadFile(yamlConfig)
+	cfg, err := os.ReadFile(yamlConfig)
 	if err != nil {
 		panic("Failed to read configuration file:" + err.Error())
 	}

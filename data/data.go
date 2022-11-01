@@ -1,8 +1,9 @@
 package data
 
 import (
-	c "github.com/wannanbigpig/gin-layout/config"
 	"sync"
+
+	c "github.com/wannanbigpig/gin-layout/config"
 )
 
 var once sync.Once
@@ -17,6 +18,11 @@ func InitData() {
 		if c.Config.Redis.Enable {
 			// 初始化 redis
 			initRedis()
+		}
+
+		if c.Config.Mongo.Enable {
+			// 初始化 mongo
+			initMongo()
 		}
 	})
 }

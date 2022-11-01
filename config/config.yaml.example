@@ -19,6 +19,13 @@ mysql:
   max_idle_conns: 10
   max_open_conns: 100
   max_lifetime: 3600s
+mongo:
+  enable: false
+  host: 127.0.0.1
+  port: 3306
+  database: test
+  username: root
+  password: root1234
 redis:
   enable: false
   host: 127.0.0.1
